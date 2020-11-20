@@ -19,7 +19,7 @@ public class Tracking {
 	
 	public Pacco get(int index)throws Exception
 	{
-		if (pacchi.size()>index)
+		if (pacchi.size()<index)
 			throw new Exception ("Index out of bound");
 		return pacchi.get(index);
 	}
@@ -41,26 +41,55 @@ public class Tracking {
 		private Timestamp start;
 		private Timestamp end;
 		
-		public String getCode() {return code;}
-		public TrackPack get() {return traccia;}
-		public String[] getInfo()
-		{
-			String[] info= {code, capSrc, capDest, start.toString(), end.toString()};
-			return info;
-		}
-		public void setStart(Timestamp start) {this.start=start;}
-		public void setEnd(Timestamp end) {this.end=end;}
-		public String getSrc() {return capSrc;}
-		public String getDest() {return capDest;}
+		
 		Pacco(String code, String capSrc, String capDest)
 		{
 			this.code=code; this.capSrc=capSrc; this.capDest=capDest;traccia=new TrackPack();start=null;end=null;
+		}
+		
+		public String getStatus()
+		{
+			String status;
+			String[] singleStatus;
+			if (end!=null)
+				status="Package n. "+code+" is arrived to destination\t\n";
+			else
+				status="Package n. "+code+" is in transit.\t\n";
+			
+			status+="Package shipped from "+capSrc+" to "+capDest+"\t\n";
+			status+="\n\n";
+			status+="Shipping update\t\n";
+			status+="Source Cap\tDate/Time\tDestination Cap\tDate/Time\t\n";
+			for (int i=0;i<traccia.size();i++)
+			{
+				singleStatus=traccia.get(i).info();
+				status+=singleStatus[1]+"\t"+singleStatus[3]+"\t"+singleStatus[2]+"\t"+singleStatus[4]+"\t\n";
+			}
+			return status;
 		}
 		
 		public void addIssue(String src, String dest, Timestamp start, Timestamp end)
 		{
 			traccia.addExist(src, dest, start, end);
 		}
+		
+		public String getCode() {return code;}
+		
+		public TrackPack get() {return traccia;}
+		
+		public String[] getInfo()
+		{
+			String[] info= {code, capSrc, capDest, start.toString(), end.toString()};
+			return info;
+		}
+		
+		public void setStart(Timestamp start) {this.start=start;}
+		
+		public void setEnd(Timestamp end) {this.end=end;}
+		
+		public String getSrc() {return capSrc;}
+		
+		public String getDest() {return capDest;}
 		
 		public void sendTo(String src, String dest)
 		{
@@ -71,8 +100,13 @@ public class Tracking {
 			traccia.add(src, dest, time);
 		}
 		
-		
-		
+		public void received(String dest)
+		{
+			Timestamp time=new Timestamp(System.currentTimeMillis());
+			if (dest.equals(capDest))
+				end=time;
+			traccia.get(traccia.size()-1).arrived(time);
+		}	
 	}
 	
 	public class TrackPack{
@@ -100,10 +134,12 @@ public class Tracking {
 		private String capEnd;
 		private Timestamp start;
 		private Timestamp end;
+		
 		Travel(String capStart, String capEnd, Timestamp start, Timestamp end)
 		{
 			this.capStart=capStart;this.capEnd=capEnd;this.start=start; this.end=end;
 		}
+		
 		Travel(String capStart, String capEnd, Timestamp time)
 		{
 			this.capStart=capStart;this.capEnd=capEnd;start=time; end=null;
@@ -115,9 +151,9 @@ public class Tracking {
 			return info;
 		}
 		
-		private void end()
+		private void arrived(Timestamp time)
 		{
-			end=new Timestamp(System.currentTimeMillis());
+			end=time;
 		}
 		
 		private boolean isSend()
