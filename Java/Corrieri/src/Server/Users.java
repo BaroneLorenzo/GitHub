@@ -32,14 +32,29 @@ public class Users implements Serializable {
 		users=BinaryFile.read("users.dat");
 	}
 	
-	private void download()throws Exception
+	public void download()throws Exception
 	{
 		BinaryFile.write(users, "users.dat");
+	}
+	public void add(String username, String password)throws Exception{
+		if (search(username)!=-1)
+			throw new Exception("USERNAME DUPLICATED");
+		users.add(new User(username, password));
+	}
+	
+	public String get() {
+		String text="\n\n*START USERS INFORMATION*";
+		for (int i=0; i<users.size();i++)
+		{
+			text+="\n"+users.get(i).getCap()+"\t"+users.get(i).getPassword();
+		}
+		text+="\n*END USERS INFORMATIONS*\n\n";
+		return text;
 	}
 	
 	
 	
-	private class User{
+	private class User implements Serializable{
 		private String cap;
 		private String code;
 		
@@ -49,6 +64,8 @@ public class Users implements Serializable {
 		}
 		
 		public String getCap() {return cap;}
+		
+		private String getPassword(){return code;}
 		
 		public void login(String cap, String code)throws Exception
 		{

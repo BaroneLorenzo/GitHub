@@ -12,7 +12,7 @@ public class Tracking {
 	
 	public void add(String code, String capSrc, String capDest)throws Exception
 	{
-		if (search(code)==-1)
+		if (search(code)!=-1)
 			throw new Exception("Duplicate");
 		pacchi.add(new Pacco(code, capSrc, capDest));
 	}
@@ -52,18 +52,17 @@ public class Tracking {
 			String status;
 			String[] singleStatus;
 			if (end!=null)
-				status="Package n. "+code+" is arrived to destination\t\n";
+				status="Package n. "+code+" is arrived to destination%";
 			else
-				status="Package n. "+code+" is in transit.\t\n";
+				status="Package n. "+code+" is in transit.%";
 			
-			status+="Package shipped from "+capSrc+" to "+capDest+"\t\n";
-			status+="\n\n";
-			status+="Shipping update\t\n";
-			status+="Source Cap\tDate/Time\tDestination Cap\tDate/Time\t\n";
+			status+="Package shipped from "+capSrc+" to "+capDest+"%";
+			status+="Shipping update%";
+			status+="Source Cap\tDate/Time\tDestination Cap\tDate/Time\t%";
 			for (int i=0;i<traccia.size();i++)
 			{
 				singleStatus=traccia.get(i).info();
-				status+=singleStatus[1]+"\t"+singleStatus[3]+"\t"+singleStatus[2]+"\t"+singleStatus[4]+"\t\n";
+				status+=singleStatus[1]+"\t"+singleStatus[3]+"\t"+singleStatus[2]+"\t"+singleStatus[4]+"\t%";
 			}
 			return status;
 		}
@@ -79,7 +78,10 @@ public class Tracking {
 		
 		public String[] getInfo()
 		{
-			String[] info= {code, capSrc, capDest, start.toString(), end.toString()};
+			String st, en;
+			if (start==null) {st="null";}else {st=start.toString();}
+			if (end==null) {en="null";}else {en=end.toString();}
+			String[] info= {code, capSrc, capDest, st, en};
 			return info;
 		}
 		
@@ -147,7 +149,10 @@ public class Tracking {
 		
 		public String[] info() 
 		{
-			String[] info= {"null", capStart, capEnd, start.toString(), end.toString()};
+			String st, en;
+			if (start==null) {st="null";}else {st=start.toString();}
+			if (end==null) {en="null";}else {en=end.toString();}
+			String[] info= {"null", capStart, capEnd, st, end.toString()};
 			return info;
 		}
 		

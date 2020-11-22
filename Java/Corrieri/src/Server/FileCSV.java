@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,7 +43,8 @@ public class FileCSV{
 	        reader.close();
 	        return list;
 	    } catch (IOException e) {
-	        e.printStackTrace();
+	        File file=new File(path);
+	        try{file.createNewFile();}catch(Exception a) {System.out.println(a);}
 	        return null;
 	    }  
 	}
