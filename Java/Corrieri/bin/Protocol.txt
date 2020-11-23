@@ -1,0 +1,6 @@
+Barone Lorenzo Packages Protocol
+01/CAP/code access, create connection with host
+02/PackageCod Status, Status of package
+11/PackageCode/CapSource/CapDestination create new package
+12/PackageCode/CapDestination send to, used for send a new package or for send a received package that is not arrived to destination place
+13/PackageCode Received Package, Arrived package it is waiting to be sent to the next destination

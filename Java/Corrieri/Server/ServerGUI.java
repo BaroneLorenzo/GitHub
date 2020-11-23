@@ -27,6 +27,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -50,7 +51,6 @@ public class ServerGUI {
 	private Server server;
 	private JLabel lblAddress;
 	private JLabel lblStatus;
-	private JDialog popUp;
 	
 	
 	/**
@@ -181,7 +181,8 @@ public class ServerGUI {
 		btnSwitchOn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					
+					lblStatus.setText("STATUS: SWITCHING ON");
+					lblStatus.setForeground(new Color(0, 255, 0));
 					server=new Server();
 					server.start();
 					lblStatus.setForeground(new Color(0, 255, 0));
@@ -282,7 +283,7 @@ public class ServerGUI {
 		{
 			tracking = new Tracking();
 			FileCSV csv=new FileCSV("%", "server.csv");
-			ArrayList<String[]> issues=csv.read();
+			ArrayList<String[]> issues=csv.read();//0 code/1 src/2 dest/3 time/4 time
 			int count=-1;
 			for (int i=0;i<issues.size();i++)
 			{
@@ -292,7 +293,17 @@ public class ServerGUI {
 					count++;
 				}else
 				{
-					tracking.get(count).addIssue(issues.get(i)[1], issues.get(i)[2], new Timestamp(Long.parseLong(issues.get(i)[3])), new Timestamp(Long.parseLong(issues.get(i)[3])));
+					try {
+					    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+					    Date parsedDate = dateFormat.parse(issues.get(i)[3]);
+					    Timestamp time1 = new java.sql.Timestamp(parsedDate.getTime());
+					    parsedDate = dateFormat.parse(issues.get(i)[4]);
+					    Timestamp time2 = new java.sql.Timestamp(parsedDate.getTime());
+					    tracking.get(count).addIssue(issues.get(i)[1], issues.get(i)[2], time1, time2);
+					} catch(Exception e) { 
+						terminal.append(e.getMessage());
+					}
+					
 				}
 			}
 		}
@@ -309,7 +320,6 @@ public class ServerGUI {
 					list.add(tracking.get(i).get().get(y).info());
 				}
 			}
-			System.out.println(list);
 			csv.write(list);
 		}
 		
@@ -340,12 +350,12 @@ public class ServerGUI {
 				String request;
 				try
 				{
-					while ((request=input.readLine())!=null)
+					while ((request=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701"))!=null)
 					{
 						terminal.append("\nFrom "+connection.getInetAddress()+"> Request: "+request);
-						String reply=getReply(request);
+						String reply=Crypter.encrypt(getReply(request), "BaRoNeLoReNzO20011701");
 						output.println(reply);
-						terminal.append("\nTo "+connection.getInetAddress()+"> Reply: "+reply);
+						terminal.append("\nTo "+connection.getInetAddress()+"> Reply: "+Crypter.decrypt(reply, "BaRoNeLoReNzO20011701"));
 					}
 				}
 				catch (Exception e)

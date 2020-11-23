@@ -26,11 +26,14 @@ public class Tracking {
 	
 	public int search(String code)
 	{
+		
 		for (int i=0;i<pacchi.size();i++)
 		{
+			
 			if (pacchi.get(i).getCode().equals(code))
 				return i;
 		}
+		
 		return -1;
 	}
 	public class Pacco{
@@ -95,7 +98,6 @@ public class Tracking {
 		
 		public void sendTo(String src, String dest)
 		{
-			
 			Timestamp time=new Timestamp(System.currentTimeMillis());
 			if (src.equals(capSrc))
 				start=time;
@@ -107,6 +109,9 @@ public class Tracking {
 			Timestamp time=new Timestamp(System.currentTimeMillis());
 			if (dest.equals(capDest))
 				end=time;
+			int index=traccia.size()-1;
+			if (index==-1)
+				index=0;
 			traccia.get(traccia.size()-1).arrived(time);
 		}	
 	}
@@ -122,7 +127,7 @@ public class Tracking {
 		
 		private void add(String capStart, String capEnd, Timestamp time)
 		{
-			viaggio.add(new Travel(capStart, capEnd, time)); 
+			viaggio.add(new Travel(capStart, capEnd, time));
 		}
 		private void addExist(String capStart, String capEnd, Timestamp start, Timestamp end)
 		{
@@ -139,6 +144,7 @@ public class Tracking {
 		
 		Travel(String capStart, String capEnd, Timestamp start, Timestamp end)
 		{
+			
 			this.capStart=capStart;this.capEnd=capEnd;this.start=start; this.end=end;
 		}
 		
@@ -152,7 +158,7 @@ public class Tracking {
 			String st, en;
 			if (start==null) {st="null";}else {st=start.toString();}
 			if (end==null) {en="null";}else {en=end.toString();}
-			String[] info= {"null", capStart, capEnd, st, end.toString()};
+			String[] info= {"null", capStart, capEnd, st, en};
 			return info;
 		}
 		
@@ -173,9 +179,6 @@ public class Tracking {
 			else return false;
 		}
 		
-		private String getCapStart() {return capStart;}
-		private String getCapEnd() {return capEnd;}
-		private Timestamp getTimeStart() {return start;}
-		private Timestamp getTimeEnd() {return end;}
+		
 	}
 }

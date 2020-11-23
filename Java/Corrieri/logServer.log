@@ -1,0 +1,142 @@
+***Mon Nov 23 18:07:26 CET 2020***
+Terminal
+*Mon Nov 23 17:52:05 CET 2020 Server ON*
+*Users Added*
+
+*START USERS INFORMATION*
+11020	barone
+*END USERS INFORMATIONS*
+
+
+*Users Added*
+*Users Added*
+*Users Added*
+
+*START USERS INFORMATION*
+11020	barone
+11021	barone
+11022	barone
+11023	barone
+*END USERS INFORMATIONS*
+
+
+From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 11/12345/11020/11023
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 1212345/11021
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 01/11021/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%
+From /172.17.164.49> Request: 13/1234
+To /172.17.164.49> Reply: Index -1 out of bounds for length 1
+From /172.17.164.49> Request: 1212345/11021
+To /172.17.164.49> Reply: Successfull
+Connection reset***Mon Nov 23 18:09:48 CET 2020***
+Terminal
+*Mon Nov 23 18:07:57 CET 2020 Server ON*
+From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: Successfull login
+
+*START USERS INFORMATION*
+11020	barone
+11021	barone
+11022	barone
+11023	barone
+*END USERS INFORMATIONS*
+
+
+From /172.17.164.49> Request: 1211020/11021
+To /172.17.164.49> Reply: Successfull***Mon Nov 23 18:19:11 CET 2020***
+Terminal
+*Mon Nov 23 18:10:37 CET 2020 Server ON*
+From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 1212345/11021
+To /172.17.164.49> Reply: Successfull
+Connection reset
+From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 12/12345/11021
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:12:42.163	11021	null	%
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:12:42.163	11021	null	%
+From /172.17.164.49> Request: 01/11021/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:12:42.163	11021	null	%
+From /172.17.164.49> Request: 13/12345
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:12:42.163	11021	2020-11-23 18:14:45.762	%
+From /172.17.164.49> Request: 12/12345/11022
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:12:42.163	11021	2020-11-23 18:14:45.762	%11021	2020-11-23 18:15:11.395	11022	null	%
+From /172.17.164.49> Request: 01/11022/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 13/12345
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:12:42.163	11021	2020-11-23 18:14:45.762	%11021	2020-11-23 18:15:11.395	11022	2020-11-23 18:15:50.834	%
+From /172.17.164.49> Request: 12/12345/11023
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 01/11023/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:12:42.163	11021	2020-11-23 18:14:45.762	%11021	2020-11-23 18:15:11.395	11022	2020-11-23 18:15:50.834	%11022	2020-11-23 18:16:04.715	11023	null	%
+From /172.17.164.49> Request: 13/12345
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is arrived to destination%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:12:42.163	11021	2020-11-23 18:14:45.762	%11021	2020-11-23 18:15:11.395	11022	2020-11-23 18:15:50.834	%11022	2020-11-23 18:16:04.715	11023	2020-11-23 18:16:54.525	%
+Connection reset
+
+*START USERS INFORMATION*
+11020	barone
+11021	barone
+11022	barone
+11023	barone
+*END USERS INFORMATIONS*
+
+***Mon Nov 23 18:44:57 CET 2020***
+Terminal
+*Mon Nov 23 18:42:20 CET 2020 Server ON*
+From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: Successfull login
+Connection reset
+From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%
+From /172.17.164.49> Request: 12/12345/11023
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:43:51.634	11023	null	%
+From /172.17.164.49> Request: 01/11023/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 13/12345
+To /172.17.164.49> Reply: Successfull
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is arrived to destination%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:43:51.634	11023	2020-11-23 18:44:15.242	%
+Connection reset
+Connection reset***Mon Nov 23 18:48:44 CET 2020***
+Terminal
+*Mon Nov 23 18:45:43 CET 2020 Server ON*
+From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: Successfull login
+From /172.17.164.49> Request: 02/12345
+To /172.17.164.49> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:43:51.634	11023	2020-11-23 18:44:15.242	%
+Connection reset***Mon Nov 23 19:06:24 CET 2020***
+Terminal
+java.net.BindException: Address already in use: bind
+java.net.BindException: Address already in use: bind
+*Mon Nov 23 18:48:50 CET 2020 Server ON****Mon Nov 23 19:09:30 CET 2020***
+Terminal
+*Mon Nov 23 19:07:45 CET 2020 Server ON*
+From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: F/myTMVpn5l7PV2I5Z1NdHKabGNgwQ9u97/2F4HBGtE=
+Connection reset

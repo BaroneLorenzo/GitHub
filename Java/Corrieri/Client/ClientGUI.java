@@ -42,6 +42,8 @@ public class ClientGUI {
 	private JTextField txtCodeR;
 	private JTextField txtCodeStatus;
 	
+	private JLabel lblOffice;
+	
 	private JTextArea status;
 	
 	private JPasswordField password;
@@ -170,7 +172,7 @@ public class ClientGUI {
 		frameMain.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frameMain.getContentPane().setLayout(null);
 		
-		JLabel lblOffice = new JLabel("OFFICE");
+		lblOffice = new JLabel("OFFICE N. "+user.getCap());
 		lblOffice.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblOffice.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOffice.setBounds(10, 10, 1015, 55);
@@ -333,7 +335,7 @@ public class ClientGUI {
 				btnReceived.setEnabled(false);
 				txtCodeStatus.setEnabled(false);
 				btnStatus.setEnabled(false);
-				saveUser();
+				//saveUser();
 			}
 		});
 		btnClose.setIcon(null);
@@ -363,7 +365,7 @@ public class ClientGUI {
 				output=new PrintWriter(socket.getOutputStream(), true);
 				
 				}catch(Exception e) 
-			{}
+			{System.out.println(e);}
 		}
 		private void check()throws Exception{
 			if (!socket.isConnected() || socket.isClosed())
@@ -377,12 +379,13 @@ public class ClientGUI {
 			//PROTOCOL 01/CAP/PASSWORD
 			String message="01/"+cap+"/"+password;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
+			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
 			if (message.equals("Successfull login"))
 				user=new User(cap, password);
 			else 
 				throw new Exception("Login Failed");
+			
 		}
 		
 		public void createShipment(String code, String to)throws Exception
@@ -390,8 +393,8 @@ public class ClientGUI {
 			//PROTOCOL 11/packagecode/capsrc/capdest
 			String message="11/"+code+"/"+user.getCap()+"/"+to;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
+			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
 			if (message.equals("Successfull"))
 				throw new Exception("Package Added");
 			throw new Exception("Error. "+message);
@@ -399,10 +402,10 @@ public class ClientGUI {
 		
 		public void send(String code, String to)throws Exception{
 			//PROTOCOL 12/packagecode/capdest
-			String message="12"+code+"/"+to;
+			String message="12/"+code+"/"+to;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
+			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
 			if (message.equals("Successfull"))
 				throw new Exception("Sended");
 			throw new Exception ("Erro. "+message);
@@ -412,19 +415,19 @@ public class ClientGUI {
 			//PROTOCOL 13/packageCode
 			String message="13/"+code;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
+			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
 			if (message.equals("Successfull"))
 				throw new Exception("Success");
-			throw new Exception ("Erro. "+message);
+			throw new Exception ("Error. "+message);
 		}
 		
 		public String status(String code)throws Exception{
 			//PROTOCOL 02/packageCode
 			String message="02/"+code;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
+			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
 			if (message.equals("Success"))
 			{
 				message=input.readLine();
