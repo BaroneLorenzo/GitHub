@@ -139,4 +139,21 @@ Terminal
 *Mon Nov 23 19:07:45 CET 2020 Server ON*
 From /172.17.164.49> Request: 01/11020/barone
 To /172.17.164.49> Reply: F/myTMVpn5l7PV2I5Z1NdHKabGNgwQ9u97/2F4HBGtE=
-Connection reset
+Connection reset***Mon Nov 23 19:49:45 CET 2020***
+Terminal
+*Mon Nov 23 19:45:58 CET 2020 Server ON*
+From /127.0.0.1> Request: 01/11020/barone
+To /127.0.0.1> Reply: Successfull login
+From /127.0.0.1> Request: 02/12345
+To /127.0.0.1> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:43:51.634	11023	2020-11-23 18:44:15.242	%
+From /127.0.0.1> Request: 02/12345
+To /127.0.0.1> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:43:51.634	11023	2020-11-23 18:44:15.242	%
+From /127.0.0.1> Request: 02/12345
+To /127.0.0.1> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:43:51.634	11023	2020-11-23 18:44:15.242	%
+Connection reset***Mon Nov 23 19:54:43 CET 2020***
+Terminal
+*Mon Nov 23 19:53:14 CET 2020 Server ON*
+From /127.0.0.1> Request: 01/11020/barone
+To /127.0.0.1> Reply: Successfull login
+From /127.0.0.1> Request: 02/12345
+To /127.0.0.1> Reply: Package n. 12345 is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-11-23 18:43:51.634	11023	2020-11-23 18:44:15.242	%

@@ -350,12 +350,12 @@ public class ServerGUI {
 				String request;
 				try
 				{
-					while ((request=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701"))!=null)
+					while ((request=input.readLine())!=null)
 					{
 						terminal.append("\nFrom "+connection.getInetAddress()+"> Request: "+request);
-						String reply=Crypter.encrypt(getReply(request), "BaRoNeLoReNzO20011701");
+						String reply=getReply(request);
 						output.println(reply);
-						terminal.append("\nTo "+connection.getInetAddress()+"> Reply: "+Crypter.decrypt(reply, "BaRoNeLoReNzO20011701"));
+						terminal.append("\nTo "+connection.getInetAddress()+"> Reply: "+reply);
 					}
 				}
 				catch (Exception e)
@@ -376,8 +376,6 @@ public class ServerGUI {
 				case "01": //login
 					if (msg.length==3)
 					{
-						/*if (hostCAP.equals("null"))
-							return ("Error, you can't change your CAP Code;");*/
 						try {
 							users.login(msg[1], msg[2]); hostCAP=msg[1];
 							}catch(Exception e) {

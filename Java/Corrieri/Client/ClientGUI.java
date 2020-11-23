@@ -61,7 +61,7 @@ public class ClientGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClientGUI window = new ClientGUI(args[0]);
+					ClientGUI window = new ClientGUI();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -96,9 +96,8 @@ public class ClientGUI {
 	/**
 	 * Create the application.
 	 */
-	public ClientGUI(String ip) {
-		client=new Client(ip);
-		client.start();
+	public ClientGUI() {
+		
 		initialize();
 		
 	}
@@ -124,6 +123,19 @@ public class ClientGUI {
 		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblLogin.setBounds(10, 10, 460, 37);
 		frame.getContentPane().add(lblLogin);
+
+		JLabel lblIp = new JLabel("Server IP");
+		lblIp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblIp.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIp.setBounds(10, 100, 145, 37);
+		frame.getContentPane().add(lblIp);
+		
+		JTextField txtIp = new JTextField();
+		txtIp.setHorizontalAlignment(SwingConstants.CENTER);
+		txtIp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtIp.setBounds(165, 100, 186, 37);
+		frame.getContentPane().add(txtIp);
+		txtIp.setColumns(10);
 		
 		JLabel lblCap = new JLabel("CAP");
 		lblCap.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -155,6 +167,8 @@ public class ClientGUI {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
+					client=new Client(txtIp.getText());
+					client.start();
 					client.login(txtCap.getText(), password.getText());
 					main();//frame.setVisible(false);frameMain.setVisible(true);
 				}catch(Exception e ) { JOptionPane.showMessageDialog (frame, e.getMessage() );} 
@@ -356,7 +370,6 @@ public class ClientGUI {
 			socket=new Socket();
 			connect();
 		}
-		
 		private void connect() {
 			socket=new Socket();
 			try{
@@ -379,8 +392,8 @@ public class ClientGUI {
 			//PROTOCOL 01/CAP/PASSWORD
 			String message="01/"+cap+"/"+password;
 			check();
-			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
-			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
+			output.println(message);
+			message=input.readLine();
 			if (message.equals("Successfull login"))
 				user=new User(cap, password);
 			else 
@@ -393,8 +406,8 @@ public class ClientGUI {
 			//PROTOCOL 11/packagecode/capsrc/capdest
 			String message="11/"+code+"/"+user.getCap()+"/"+to;
 			check();
-			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
-			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
+			output.println(message);
+			message=input.readLine();
 			if (message.equals("Successfull"))
 				throw new Exception("Package Added");
 			throw new Exception("Error. "+message);
@@ -404,8 +417,8 @@ public class ClientGUI {
 			//PROTOCOL 12/packagecode/capdest
 			String message="12/"+code+"/"+to;
 			check();
-			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
-			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
+			output.println(message);
+			message=input.readLine();
 			if (message.equals("Successfull"))
 				throw new Exception("Sended");
 			throw new Exception ("Erro. "+message);
@@ -415,8 +428,8 @@ public class ClientGUI {
 			//PROTOCOL 13/packageCode
 			String message="13/"+code;
 			check();
-			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
-			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
+			output.println(message);
+			message=input.readLine();
 			if (message.equals("Successfull"))
 				throw new Exception("Success");
 			throw new Exception ("Error. "+message);
@@ -426,8 +439,8 @@ public class ClientGUI {
 			//PROTOCOL 02/packageCode
 			String message="02/"+code;
 			check();
-			output.println(Crypter.encrypt(message, "BaRoNeLoReNzO20011701"));
-			message=Crypter.decrypt(input.readLine(), "BaRoNeLoReNzO20011701");
+			output.println(message);
+			message=input.readLine();
 			if (message.equals("Success"))
 			{
 				message=input.readLine();
