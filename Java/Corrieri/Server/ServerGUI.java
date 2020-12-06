@@ -51,7 +51,7 @@ public class ServerGUI {
 	private Server server;
 	private JLabel lblAddress;
 	private JLabel lblStatus;
-	
+	private final String mykey="BaRoNeLoReNzO-1-7-0-1-2-0-0-1";
 	
 	/**
 	 * Launch the application.
@@ -352,10 +352,11 @@ public class ServerGUI {
 				{
 					while ((request=input.readLine())!=null)
 					{
+						request=AES.decrypt(request, mykey);
 						terminal.append("\nFrom "+connection.getInetAddress()+"> Request: "+request);
-						String reply=getReply(request);
+						String reply=AES.encrypt(getReply(request), mykey);
 						output.println(reply);
-						terminal.append("\nTo "+connection.getInetAddress()+"> Reply: "+reply);
+						terminal.append("\nTo "+connection.getInetAddress()+"> Reply: "+AES.decrypt(reply, mykey));
 					}
 				}
 				catch (Exception e)

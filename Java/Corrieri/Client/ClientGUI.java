@@ -51,7 +51,7 @@ public class ClientGUI {
 	private User user;
 	
 	private Client client;
-
+	private final String mykey="BaRoNeLoReNzO-1-7-0-1-2-0-0-1";
 	/**
 	 * Launch the application.
 	 */
@@ -392,8 +392,8 @@ public class ClientGUI {
 			//PROTOCOL 01/CAP/PASSWORD
 			String message="01/"+cap+"/"+password;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(AES.encrypt(message, mykey));
+			message=AES.decrypt(input.readLine(), mykey);
 			if (message.equals("Successfull login"))
 				user=new User(cap, password);
 			else 
@@ -406,8 +406,8 @@ public class ClientGUI {
 			//PROTOCOL 11/packagecode/capsrc/capdest
 			String message="11/"+code+"/"+user.getCap()+"/"+to;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(AES.encrypt(message, mykey));
+			message=AES.decrypt(input.readLine(), mykey);
 			if (message.equals("Successfull"))
 				throw new Exception("Package Added");
 			throw new Exception("Error. "+message);
@@ -417,8 +417,8 @@ public class ClientGUI {
 			//PROTOCOL 12/packagecode/capdest
 			String message="12/"+code+"/"+to;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(AES.encrypt(message, mykey));
+			message=AES.decrypt(input.readLine(), mykey);
 			if (message.equals("Successfull"))
 				throw new Exception("Sended");
 			throw new Exception ("Erro. "+message);
@@ -428,8 +428,8 @@ public class ClientGUI {
 			//PROTOCOL 13/packageCode
 			String message="13/"+code;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(AES.encrypt(message, mykey));
+			message=AES.decrypt(input.readLine(), mykey);
 			if (message.equals("Successfull"))
 				throw new Exception("Success");
 			throw new Exception ("Error. "+message);
@@ -439,8 +439,8 @@ public class ClientGUI {
 			//PROTOCOL 02/packageCode
 			String message="02/"+code;
 			check();
-			output.println(message);
-			message=input.readLine();
+			output.println(AES.encrypt(message, mykey));
+			message=AES.decrypt(input.readLine(), mykey);
 			if (message.equals("Success"))
 			{
 				message=input.readLine();
