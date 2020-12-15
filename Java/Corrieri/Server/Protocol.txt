@@ -1,6 +1,6 @@
 Barone Lorenzo Packages Protocol
-01/CAP/code -> Login al servizio tramite CAP identificativo e codice
-02/PackageCode -> Richiede lo stato della spezione
-11/PackageCode/CapSource/CapDestination -> crea un nuovo pacco inserendo la partenza e la destinazione
-12/PackageCode/CapDestination -> Invia il pacco a un altro centro di smismatmento 
-13/PackageCode -> comunica al server che ha ricevuto il pacco
+01/CAP/code access, create connection with host
+02/PackageCod Status, Status of package
+11/CapSource/CapDestination create new package
+12/PackageCode/CapDestination send to, used for send a new package or for send a received package that is not arrived to destination place
+13/PackageCode Received Package, Arrived package it is waiting to be sent to the next destination

@@ -35,7 +35,6 @@ public class ClientGUI {
 	private JFrame frameMain;
 	
 	private JTextField txtCap;
-	private JTextField txtNewCode;
 	private JTextField txtNewTo;
 	private JTextField txtCode;
 	private JTextField txtTo;
@@ -205,34 +204,21 @@ public class ClientGUI {
 		
 		frameMain.getContentPane().add(scrollbar);
 		
-		JLabel lblNewLabel = new JLabel("CODE PACKAGE");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 110, 175, 39);
-		frameMain.getContentPane().add(lblNewLabel);
-		
-		txtNewCode = new JTextField();
-		txtNewCode.setHorizontalAlignment(SwingConstants.CENTER);
-		txtNewCode.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtNewCode.setBounds(180, 110, 175, 39);
-		frameMain.getContentPane().add(txtNewCode);
-		txtNewCode.setColumns(10);
-		
 		txtNewTo = new JTextField();
 		txtNewTo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtNewTo.setHorizontalAlignment(SwingConstants.CENTER);
-		txtNewTo.setBounds(576, 110, 190, 39);
+		txtNewTo.setBounds(391, 110, 190, 39);
 		frameMain.getContentPane().add(txtNewTo);
 		txtNewTo.setColumns(10);
 		
 		JButton btnNew = new JButton("CREATE NEW SHIPMENT");
 		btnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try{client.createShipment(txtNewCode.getText(), txtNewTo.getText());txtNewCode.setText("");txtNewTo.setText("");}catch(Exception e) {JOptionPane.showMessageDialog (frameMain, e.getMessage());}
+				try{client.createShipment(txtNewTo.getText());txtNewTo.setText("");}catch(Exception e) {JOptionPane.showMessageDialog (frameMain, e.getMessage());}
 			}
 		});
 		btnNew.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNew.setBounds(786, 110, 255, 39);
+		btnNew.setBounds(601, 110, 255, 39);
 		frameMain.getContentPane().add(btnNew);
 		
 		JSeparator separator = new JSeparator();
@@ -329,10 +315,10 @@ public class ClientGUI {
 		btnStatus.setBounds(391, 320, 190, 39);
 		frameMain.getContentPane().add(btnStatus);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("TO (CAP CODE)");
+		JLabel lblNewLabel_1_1_1 = new JLabel("FINAL DESTINATION (CAP CODE)");
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-		lblNewLabel_1_1_1.setBounds(391, 110, 175, 39);
+		lblNewLabel_1_1_1.setBounds(20, 110, 335, 39);
 		frameMain.getContentPane().add(lblNewLabel_1_1_1);
 		
 		JButton btnClose = new JButton("CLOSE");
@@ -340,7 +326,6 @@ public class ClientGUI {
 			public void actionPerformed(ActionEvent arg0) {
 				frameMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				status.setEnabled(false);
-				txtNewCode.setEnabled(false);
 				btnNew.setEnabled(false);
 				txtCode.setEnabled(false);
 				txtTo.setEnabled(false);
@@ -401,15 +386,16 @@ public class ClientGUI {
 			
 		}
 		
-		public void createShipment(String code, String to)throws Exception
+		public void createShipment(String to)throws Exception
 		{
-			//PROTOCOL 11/packagecode/capsrc/capdest
-			String message="11/"+code+"/"+user.getCap()+"/"+to;
+			//PROTOCOL 11/capsrc/capdest
+			String message="11/"+user.getCap()+"/"+to;
 			check();
 			output.println(AES.encrypt(message, mykey));
 			message=AES.decrypt(input.readLine(), mykey);
-			if (message.equals("Successfull"))
-				throw new Exception("Package Added");
+			String[] msg=message.split("; ");
+			if (msg[0].equals("Successfull"))
+				throw new Exception("Package Added; Code Package "+msg[1]);
 			throw new Exception("Error. "+message);
 		}
 		
@@ -440,7 +426,7 @@ public class ClientGUI {
 			String message="02/"+code;
 			check();
 			output.println(AES.encrypt(message, mykey));
-			message=AES.decrypt(input.readLine(), mykey);
+			message=input.readLine();
 			if (message.equals("Success"))
 			{
 				message=input.readLine();

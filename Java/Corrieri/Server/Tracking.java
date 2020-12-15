@@ -1,3 +1,4 @@
+import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -22,6 +23,27 @@ public class Tracking {
 		if (pacchi.size()<index)
 			throw new Exception ("Index out of bound");
 		return pacchi.get(index);
+	}
+	
+	public String createCode()
+	{
+		String lower = "abcdefghijklmnopqrstuvwxyz";
+        String upper = lower.toUpperCase();
+        String numeri = "0123456789";
+        String perRandom = upper + lower + numeri;
+        int lunghezzaRandom = 10;
+        SecureRandom sr;
+        StringBuilder sb;
+        do
+        {
+	        sr = new SecureRandom();
+	        sb = new StringBuilder(lunghezzaRandom);
+	        for (int i = 0; i < lunghezzaRandom; i++) {
+	            int randomInt = sr.nextInt(perRandom.length());
+	            char randomChar = perRandom.charAt(randomInt);
+	            sb.append(randomChar);}
+	    }while(search(sb.toString())<-1);
+        return sb.toString();
 	}
 	
 	public int search(String code)

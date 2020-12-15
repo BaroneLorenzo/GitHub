@@ -169,4 +169,46 @@ Terminal
 
 
 From /172.17.164.49> Request: 01/11020/barone
+To /172.17.164.49> Reply: Successfull login***Tue Dec 15 11:28:54 CET 2020***
+Terminal
+*Tue Dec 15 11:20:57 CET 2020 Server ON*
+
+*START USERS INFORMATION*
+11020	barone
+11021	barone
+11022	barone
+11023	barone
+*END USERS INFORMATIONS*
+
+
+From /172.17.164.49> Request: 01/11020/barone
 To /172.17.164.49> Reply: Successfull login
+Connection reset***Tue Dec 15 11:36:26 CET 2020***
+Terminal
+*Tue Dec 15 11:29:02 CET 2020 Server ON*
+From /127.0.0.1> Request: 01/11020/barone
+To /127.0.0.1> Reply: Successfull login
+
+*START USERS INFORMATION*
+11020	barone
+11021	barone
+11022	barone
+11023	barone
+*END USERS INFORMATIONS*
+
+
+From /127.0.0.1> Request: 11/11020/11023
+To /127.0.0.1> Reply: Successfull; Code_Package -> tJGFZXRzZe
+From /127.0.0.1> Request: 12/tJGFZXRzZe/11021
+To /127.0.0.1> Reply: Successfull
+From /127.0.0.1> Request: 02/tJGFZXRzZe
+To /127.0.0.1> Reply: Package n. tJGFZXRzZe is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-12-15 11:30:01.413	11021	null	%
+From /127.0.0.1> Request: 02/tJGFZXRzZe
+To /127.0.0.1> Reply: Package n. tJGFZXRzZe is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-12-15 11:30:01.413	11021	null	%
+From /127.0.0.1> Request: 02/tJGFZXRzZe
+To /127.0.0.1> Reply: Package n. tJGFZXRzZe is in transit.%Package shipped from 11020 to 11023%Shipping update%Source Cap	Date/Time	Destination Cap	Date/Time	%11020	2020-12-15 11:30:01.413	11021	null	%
+Connection reset***Tue Dec 15 11:37:55 CET 2020***
+TerminalUnparseable date: "null"
+*Tue Dec 15 11:36:34 CET 2020 Server ON*
+From /127.0.0.1> Request: null
+Cannot invoke "String.split(String)" because "request" is null

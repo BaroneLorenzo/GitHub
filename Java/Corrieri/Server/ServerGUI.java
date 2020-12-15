@@ -352,9 +352,12 @@ public class ServerGUI {
 				{
 					while ((request=input.readLine())!=null)
 					{
-						request=AES.decrypt(request, mykey);
+						if (!request.split("/")[0].equals("02"))
+							request=AES.decrypt(request, mykey);
 						terminal.append("\nFrom "+connection.getInetAddress()+"> Request: "+request);
-						String reply=AES.encrypt(getReply(request), mykey);
+						String reply=getReply(request);
+						if (!request.split("/")[0].equals("02"))
+							reply=AES.encrypt(reply, mykey);
 						output.println(reply);
 						terminal.append("\nTo "+connection.getInetAddress()+"> Reply: "+AES.decrypt(reply, mykey));
 					}
@@ -395,13 +398,14 @@ public class ServerGUI {
 					}else return "Protocol error";
 					break;
 				case "11": //create a new shipment
-					if (msg.length==4)
+					if (msg.length==3)
 					{
 						if (!hostCAP.equals("null"))
 						{
 							try {
-								tracking.add(msg[1], msg[2], msg[3]);
-								reply="Successfull";
+								String code=tracking.createCode();
+								tracking.add(code, msg[1], msg[2]);
+								reply="Successfull; Code_Package -> "+code;
 							}catch(Exception e) {return e.getMessage();}
 						}else return "Login required";
 					}else return "Protocol error";
